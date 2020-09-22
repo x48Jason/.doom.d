@@ -92,9 +92,9 @@
 (global-set-key (kbd "C-M-o") (quote my-open-prev-line))
 (global-set-key (kbd "C-o") (quote my-open-next-line))
 (global-set-key (kbd "C-k") (quote my-kill-line))
-(global-set-key (kbd "C-c C-b") (quote ivy-switch-buffer))
-(global-set-key (kbd "C-c C-s") (quote counsel-grep-or-swiper))
-(global-set-key (kbd "C-c C-f") (quote projectile-find-file))
+(global-set-key (kbd "C-x C-b") (quote ivy-switch-buffer))
+(global-set-key (kbd "C-x C-_") (quote counsel-grep-or-swiper))
+(global-set-key (kbd "C-x C-f") (quote projectile-find-file))
 
 (defvar my-mark-list ())
 
