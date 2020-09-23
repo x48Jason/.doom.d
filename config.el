@@ -124,10 +124,28 @@
       (recenter))
     (message "No more markers")))
 
+(defun my-discard-mark ()
+  (interactive)
+  (pop my-mark-list))
+
 (defun my-find-definition ()
   (interactive)
   (my-push-mark)
   (lsp-find-definition))
+
+(defun my-find-declaration ()
+  (interactive)
+  (my-push-mark)
+  (condition-case nil
+  	(lsp-find-declaration)
+  	(quit (my-discard-mark))))
+
+(defun my-find-references ()
+  (interactive)
+  (my-push-mark)
+  (condition-case nil
+  	(lsp-find-references)
+  	(quit (my-discard-mark))))
 
 (defun my-jump-backward ()
   (interactive)
@@ -138,7 +156,8 @@
 		(local-set-key (kbd "C-]") (quote my-find-definition))
 		(local-set-key (kbd "M-SPC s") (quote lsp-ui-find-workspace-symbol))
 		(local-set-key (kbd "C-t") (quote my-jump-backward))
-		(local-set-key (kbd "C-r") (quote lsp-ui-peek-find-references))))
+		(local-set-key (kbd "C-d") (quote my-find-declaration))
+		(local-set-key (kbd "C-r") (quote my-find-references))))
 
 (defcustom my-make-option "-j8"
 	   "Specify kernel make options")
